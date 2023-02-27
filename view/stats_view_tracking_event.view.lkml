@@ -61,5 +61,6 @@ dimension: campaign_id {
   measure: sum_spend {
     type: sum
     sql:  ${spend} ;;
+    value_format: "$#.00"
   }
 }
