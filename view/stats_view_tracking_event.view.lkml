@@ -65,17 +65,17 @@ dimension: campaign_id {
   }
   measure: cpc {
     type: number
-    sql: if(${sum_clicks}=0,0,${sum_spend}/${sum_clicks}) ;;
+    sql: iff(${sum_clicks}=0,0,${sum_spend}/${sum_clicks}) ;;
     value_format: "$#.00"
   }
   measure: cpa {
     type :  number
-    sql: if(${sum_applies}=0,0,${sum_spend}/${sum_applies}) ;;
+    sql: iff(${sum_applies}=0,0,${sum_spend}/${sum_applies}) ;;
     value_format: "$#.00"
   }
   measure: cta {
     type: number
-    sql: if(${sum_clicks}=0,0,${sum_applies}*100/${sum_clicks});;
+    sql: iff(${sum_clicks}=0,0,${sum_applies}*100/${sum_clicks});;
     value_format: "#.00"
   }
 }
