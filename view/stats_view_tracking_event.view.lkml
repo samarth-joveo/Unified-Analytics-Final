@@ -65,17 +65,17 @@ dimension: campaign_id {
   measure: sum_spend {
     type: sum
     sql:  ${spend} ;;
-    value_format: "$#.00"
+    value_format: "$ #.00"
   }
   measure: cpc {
     type: number
     sql: iff(${sum_clicks}=0,0,${sum_spend}/${sum_clicks}) ;;
-    value_format: "$#.00"
+    value_format: "$ #.00"
   }
   measure: cpa {
     type :  number
     sql: iff(${sum_applies}=0,0,${sum_spend}/${sum_applies}) ;;
-    value_format: "$#.00"
+    value_format: "$ #.00"
   }
   measure: cta {
     type: number

@@ -29,6 +29,6 @@ group by agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publish
   measure: total_spend {
     type: sum
     sql:  ${TABLE}.spend ;;
-    value_format: "#.00"
+    value_format: "$ #.00"
   }
  }
