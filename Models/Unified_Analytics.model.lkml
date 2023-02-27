@@ -48,3 +48,4 @@ explore: count {
 explore: stats_view_tracking_event_trend {
 
 }
+explore: stats_jax_vis {}
