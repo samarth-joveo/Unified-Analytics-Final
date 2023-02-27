@@ -45,3 +45,6 @@ explore: count {
     relationship: many_to_one
   }
 }
+explore: stats_view_tracking_event_trend {
+
+}
