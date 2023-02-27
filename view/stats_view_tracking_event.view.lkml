@@ -63,4 +63,19 @@ dimension: campaign_id {
     sql:  ${spend} ;;
     value_format: "$#.00"
   }
+  measure: cpc {
+    type: number
+    sql: ${spend}/${clicks} ;;
+    value_format: "$#.00"
+  }
+  measure: cpa {
+    type :  number
+    sql: ${spend}/${applies} ;;
+    value_format: "$#.00"
+  }
+  measure: cta {
+    type: number
+    sql: ${applies}*100/${clicks};;
+    value_format: "#.00"
+  }
 }
