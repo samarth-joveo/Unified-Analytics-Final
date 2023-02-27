@@ -11,7 +11,7 @@ group by agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publish
 
 union
 
-select agency_id,client_id,campaign_id,job_group_id,null publisher_id,null event_publisher_date,total_jobs_count,sponsored_jobs_count, null clicks, null applies, null hires, null spend from jobs.modelled.JOB_COUNT_AT_JOBGROUP_LEVEL_HOURLY;
+select agency_id,client_id,campaign_id,job_group_id,null publisher_id,null event_publisher_date,total_jobs_count,sponsored_jobs_count, null clicks, null applies, null hires, null spend from jobs.modelled.JOB_COUNT_AT_JOBGROUP_LEVEL_HOURLY where agency_id = 'uber'
   ;;
  }
 dimension: client_id {
