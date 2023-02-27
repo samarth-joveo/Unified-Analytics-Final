@@ -11,4 +11,8 @@ view: jg_info {
     type :  string
     sql: ${TABLE}.name ;;
   }
+  measure: number_of_jgs{
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+  }
  }

@@ -19,4 +19,8 @@ view: campaign_info {
     type :  string
     sql: ${TABLE}.budget_cap_frequency ;;
   }
+  measure: number_of_campaigns{
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+  }
 }

@@ -19,4 +19,8 @@ view: client_info {
     type :  string
     sql: ${TABLE}.budget_cap_frequency ;;
   }
+  measure: number_of_clients {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+  }
  }
