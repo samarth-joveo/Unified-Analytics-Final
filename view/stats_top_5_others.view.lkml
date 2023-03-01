@@ -51,4 +51,8 @@ select client_id,campaign_id,job_group_id,value,type,iff(rnk>5,'Others',publishe
     type: string
     sql: ${TABLE}.publisher_id ;;
   }
+  measure: value {
+    type: sum
+    sql: ${TABLE}.value ;;
+  }
 }
