@@ -49,3 +49,5 @@ explore: stats_view_tracking_event_trend {
 
 }
 explore: stats_jax_vis {}
+explore: stats_top_5_others {
+}
