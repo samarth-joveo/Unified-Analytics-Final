@@ -25,4 +25,22 @@ measure: clicks {
   type: sum
   sql: ${TABLE}.clicks ;;
 }
+parameter: jax_or_not {
+  type: unquoted
+  allowed_value: {
+    label: "Jax Visibility"
+    value: "show"
+  }
+  allowed_value: {
+    label: "Hide Jax"
+    value: "hide"
+  }
+  }
+  dimension: select_col {
+    sql:{% if jax_or_not._parameter_value == 'show' %}
+      ${jax_vis}
+    {% else %}
+      ${jax_hide}
+    {% endif %};;
+  }
  }
