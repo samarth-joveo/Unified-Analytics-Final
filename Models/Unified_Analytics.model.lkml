@@ -52,3 +52,4 @@ explore: stats_jax_vis {}
 explore: stats_top_5_others {
 }
 explore: map_trial {}
+explore: stats {}
