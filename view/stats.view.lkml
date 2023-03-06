@@ -12,7 +12,10 @@ and date(event_publisher_date) >=  date('2023-01-01')
 and date(event_publisher_date) <  date('2023-02-01')
 and should_contribute_to_joveo_stats = TRUE
 group by agency_id,client_id,campaign_id,job_group_id,coalesce(dbg_original_publisher,publisher_id),publisher_id,event_publisher_date;; }
-
+  dimension: agency_id {
+    type: string
+    sql: ${TABLE}.agency_id ;;
+  }
 dimension: jax_vis {
   type: string
   sql: ${TABLE}.jax_vis ;;
