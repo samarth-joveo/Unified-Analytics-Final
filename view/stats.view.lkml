@@ -7,7 +7,7 @@ sum( case when (
       else 0
     end) clicks
 from tracking.modelled.view_tracking_event
-where client_id = '18457b0e-361a-4ad5-88e3-9be503cfcc2b'
+where (agency_id not like '%ripple%' and agency_id <> 'uberjax')
 and date(event_publisher_date) >=  date('2023-01-01')
 and date(event_publisher_date) <  date('2023-02-01')
 and should_contribute_to_joveo_stats = TRUE

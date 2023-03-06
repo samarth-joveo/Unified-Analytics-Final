@@ -3,8 +3,7 @@ view: stats_view_tracking_event {
    sql: select agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date,0 total_jobs_count,0 sponsored_jobs_count,
 sum(clicks) clicks,sum(applies) applies,sum(hires) hires,sum(cd_spend) spend
 from tracking.modelled.view_grouped_tracking_event
-where agency_id = 'uber'
-and date(event_publisher_date) >=  date('2023-01-01')
+where (agency_id not like '%ripple%' and agency_id <> 'uberjax') and date(event_publisher_date) >=  date('2023-01-01')
 and date(event_publisher_date) <  date('2023-02-01')
 and should_contribute_to_joveo_stats = TRUE
 group by agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date

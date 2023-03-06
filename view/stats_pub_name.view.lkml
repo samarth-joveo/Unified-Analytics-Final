@@ -15,13 +15,13 @@ sum(case
     else 0E0
   end) as VPSpend
 from tracking.modelled.view_tracking_event
-where agency_id = 'uber'
+where (agency_id not like '%ripple%' and agency_id <> 'uberjax')
 and date(event_publisher_date) >=  date('2023-01-01')
 and date(event_publisher_date) <  date('2023-02-01')
 and should_contribute_to_joveo_stats = TRUE
 group by agency_id,client_id,publisher_id
 ),
-publisher_names as (select distinct agency_id,publisher_id,name from idp.modelled.publisher_management_publishers where agency_id = 'uber')
+publisher_names as (select distinct agency_id,publisher_id,name from idp.modelled.publisher_management_publishers where agency_id not like '%ripple%')
 select stats.agency_id agency_id,client_id,cdspend,name from stats left join publisher_names on stats.agency_id = publisher_names.agency_id and stats.publisher_id = publisher_names.publisher_id ;;
 }
 dimension: agency_id {
