@@ -12,6 +12,10 @@ union
 select agency_id,client_id,campaign_id,job_group_id,null publisher_id,null event_publisher_date,total_jobs_count,sponsored_jobs_count, null clicks, null applies, null hires, null spend from jobs.modelled.JOB_COUNT_AT_JOBGROUP_LEVEL_HOURLY where agency_id = 'uber'
   ;;
  }
+  dimension: agency_id {
+    type: string
+    sql:  ${TABLE}.agency_id ;;
+  }
 dimension: client_id {
   type: string
   sql:  ${TABLE}.client_id ;;
