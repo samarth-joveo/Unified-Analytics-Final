@@ -1,17 +1,49 @@
 view: stats_view_tracking_event {
  derived_table: {
-   sql: select agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date,0 total_jobs_count,0 sponsored_jobs_count,
-sum(clicks) clicks,sum(applies) applies,sum(hires) hires,sum(cd_spend) spend
-from tracking.modelled.view_grouped_tracking_event
+   sql: select agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date,0 total_jobs_count,0 sponsored_jobs_count,job_city,job_state,job_country,
+sum( case when (
+        event_type = 'CLICK'
+        and is_valid = true
+      ) then event_count
+      else 0
+    end)  clicks,sum(case
+      when (
+        event_type = 'CONVERSION'
+        and conversion_type = 'APPLY'
+      ) then event_count
+      else 0
+    end) applies,sum(case
+     when (
+       event_type = 'CONVERSION'
+       and conversion_type = 'HIRE'
+     ) then event_count
+     else 0
+   end) hires,sum(case
+    when is_valid = true then (event_spend * (1E0 / (1E0 - (publisher_entity_markdown / 100))) * (1E0 + (agency_markup / 100)) * (1E0 + (effective_cd_markup / 100)) * d_logic_ratio)
+    else 0E0
+  end) spend
+from tracking.modelled.view_tracking_event
 where (agency_id not like '%ripple%' and agency_id <> 'uberjax') and date(event_publisher_date) >=  date('2023-01-01')
 and should_contribute_to_joveo_stats = TRUE
-group by agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date
+group by agency_id,client_id,campaign_id,job_group_id,publisher_id,event_publisher_date,job_city,job_state,job_country
 
 union
 
-select agency_id,client_id,campaign_id,job_group_id,null publisher_id,null event_publisher_date,total_jobs_count,sponsored_jobs_count, null clicks, null applies, null hires, null spend from jobs.modelled.JOB_COUNT_AT_JOBGROUP_LEVEL_HOURLY where agency_id = 'uber'
+select agency_id,client_id,campaign_id,job_group_id,null publisher_id,null event_publisher_date,total_jobs_count,sponsored_jobs_count, null clicks, null applies, null hires, null spend, null job_city, null job_state, null job_country from jobs.modelled.JOB_COUNT_AT_JOBGROUP_LEVEL_HOURLY
   ;;
  }
+  dimension: job_city {
+    type: string
+    sql:  ${TABLE}.job_city ;;
+  }
+  dimension: job_state {
+    type: string
+    sql:  ${TABLE}.job_state ;;
+  }
+  dimension: job_country {
+    type: string
+    sql:  ${TABLE}.job_country ;;
+  }
   dimension: agency_id {
     type: string
     sql:  ${TABLE}.agency_id ;;

@@ -26,6 +26,11 @@ explore: stats_view_tracking_event {
     sql_on: ${jg_info.id} = ${stats_view_tracking_event.job_group_id}  ;;
     relationship: many_to_one
   }
+  join: location {
+    type: left_outer
+    sql_on: ${location.job_city} = ${stats_view_tracking_event.job_city} and ${location.job_state} = ${stats_view_tracking_event.job_state} and ${location.job_country} = ${stats_view_tracking_event.job_country} ;;
+    relationship: many_to_one
+ }
 
 }
 explore: count {
