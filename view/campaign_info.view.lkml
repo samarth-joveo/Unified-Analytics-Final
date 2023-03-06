@@ -1,6 +1,6 @@
 view: campaign_info {
   derived_table: {
-    sql:select distinct id,name,budget_value,budget_cap_frequency from idp.modelled.campaign_management_campaigns;;
+    sql:select distinct id,name,budget_value,budget_cap_frequency from idp.modelled.campaign_management_campaigns where (agency_id not like '%ripple%' and agency_id <> 'uberjax');;
   }
   dimension: id {
     primary_key: yes
