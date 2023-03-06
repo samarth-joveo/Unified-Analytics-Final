@@ -53,3 +53,4 @@ explore: stats_top_5_others {
 }
 explore: map_trial {}
 explore: stats {}
+explore: stats_pub_name {}
