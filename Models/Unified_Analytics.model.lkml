@@ -59,3 +59,7 @@ explore: stats_top_5_others {
 explore: map_trial {}
 explore: stats {}
 explore: stats_pub_name {}
+explore: stats_final {
+  join: location {}
+}
+explore: stats_heat_map {}
