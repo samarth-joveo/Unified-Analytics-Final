@@ -59,11 +59,11 @@ parameter: jax_or_not {
     {% endif %};;
   }
   dimension: filters_are_applied_or_not {
-    sql: {% if job_group_id.is_filtered %}
+    sql: {% if job_group_id._is_filtered %}
     ${TABLE}.job_group_id
-    {% elsif campaign_id.is_filtered %}
+    {% elsif campaign_id._is_filtered %}
     ${TABLE}.campaign_id
-    {% elsif client_id.is_filtered %}
+    {% elsif client_id._is_filtered %}
     ${TABLE}.client_id
     {% else %}
     ${TABLE}.agency_id
