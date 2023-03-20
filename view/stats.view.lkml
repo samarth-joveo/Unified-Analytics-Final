@@ -65,7 +65,7 @@ parameter: jax_or_not {
     ${TABLE}.campaign_id
     {% elsif client_id.is_filtered %}
     ${TABLE}.client_id
-    {% elsif agency_id.is_filtered %}
+    {% else %}
     ${TABLE}.agency_id
     {% endif %};;
   }
