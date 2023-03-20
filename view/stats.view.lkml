@@ -16,6 +16,18 @@ group by agency_id,client_id,campaign_id,job_group_id,coalesce(dbg_original_publ
     type: string
     sql: ${TABLE}.agency_id ;;
   }
+  dimension: client_id {
+    type: string
+    sql: ${TABLE}.client_id ;;
+  }
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+  dimension: job_group_id {
+    type: string
+    sql: ${TABLE}.job_group_id ;;
+  }
 dimension: jax_vis {
   type: string
   sql: ${TABLE}.jax_vis ;;
@@ -44,6 +56,17 @@ parameter: jax_or_not {
       ${jax_vis}
     {% else %}
       ${jax_hide}
+    {% endif %};;
+  }
+  dimension: filters_are_applied_or_not {
+    sql: {% if job_group_id.is_filtered %}
+    ${TABLE}.job_group_id
+    {% elsif campaign_id.is_filtered %}
+    ${TABLE}.campaign_id
+    {% elsif client_id.is_filtered %}
+    ${TABLE}.client_id
+    {% elsif agency_id.is_filtered %}
+    ${TABLE}.agency_id
     {% endif %};;
   }
  }
